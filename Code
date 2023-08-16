@@ -72,9 +72,9 @@ XGB_pred_0.5 <- ifelse(XGB_pred > 0.5,1,0)
 confusionMatrix(as.factor(test$MALE_DEATH_1yr), as.factor(XGB_pred_0.5))
 
 RF_pred <- predict(RF, predictors_test_preop)
-auc(test$MALE_DEATH_1yr, RF_pred)
-ci.auc(test$MALE_DEATH_1yr, RF_pred)
-RF_pred_0.5 <- ifelse(RF_pred > 0.5,1,0)
+auc(test$MALE_DEATH_1yr, RF_pred$predictions)
+ci.auc(test$MALE_DEATH_1yr, RF_pred$predictions)
+RF_pred_0.5 <- ifelse(RF_pred$predictions > 0.5,1,0)
 confusionMatrix(as.factor(test$MALE_DEATH_1yr), as.factor(RF_pred_0.5))
 
 NB_pred <- predict(NB, predictors_test_preop)
