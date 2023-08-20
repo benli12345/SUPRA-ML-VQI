@@ -185,17 +185,17 @@ predictors_test_male <- test_male %>% select(REGIONID, CENTERID, PHYSICIANID, SU
 predictors_test_female <- test_female %>% select(REGIONID, CENTERID, PHYSICIANID, SURGYEAR, SURGMONTH, SURGWEEKDAY, AGE, GENDER, BMI, RACE, ETHNICITY, PRIMARYINSURER, RURAL, ADI_NATRANK_MEDIAN, TRANSFER, HTN, PREOP_DIABETES, PREOP_SMOKING, PRIOR_CAD, PRIOR_CABG_PCI, PRIOR_CHF, COPD, PREOP_DIALYSIS, R_PRIOR_BYPASS, P_SUPRA_BYPASS, P_INFRA_BYPASS, R_PRIOR_PVI, P_SUPRA_PTASTENT, P_INFRA_PTASTENT, R_PRIOR_MAJOR_AMP, PRIOR_MIN_AMP, PRIOR_CEACAS, PRIOR_ANEURREP, LIVINGSTATUS, PREOP_AMBUL, HEMO_L, PREOP_CREAT_UMOL, STRESS, PREOP_DUP, PREOP_CTA, PREOP_MRA, ARTERIO, VMAP, PREOP_ASA, PREOP_P2Y, PREOP_STATIN, PREOP_BETABLOCKER, PREOP_ACE, C_PREOP_ANTICOAG, PREOP_ABI, PROC, GRFT_TYPE, SURGERYSIDE, GRFT_ORIGIN_ARTERY, GRFT_ORIGIN_DIA, GRFT_RECP1_SIDE, GRFT_RECP1_ARTERY, GRFT_RECP1_GRFT_DIA, GRFT_RECP1_GRFT_TYPE, GRFT_RECP2_SIDE, GRFT_RECP2_ARTERY, GRFT_RECP2_GRFT_DIA, GRFT_RECP2_GRFT_TYPE, CC_INFRA_BYPASS, CC_PVI, SYMPT, URGENCY, ASACLASS)
 
 pred_male <- predict(XGB_preop, as.matrix(predictors_test_male))
-auc(test_male$male, pred_male)
-ci.auc(test_male$male, pred_male)
+auc(test_male$MALE_DEATH_1yr, pred_male)
+ci.auc(test_male$MALE_DEATH_1yr, pred_male)
 
 pred_female <- predict(XGB_preop, as.matrix(predictors_test_female))
-auc(test_female$male, pred_female)
-ci.auc(test_female$male, pred_female)
+auc(test_female$MALE_DEATH_1yr, pred_female)
+ci.auc(test_female$MALE_DEATH_1yr, pred_female)
 
-perf_male <- prediction(pred_male, test_male$male)
+perf_male <- prediction(pred_male, test_male$MALE_DEATH_1yr)
 perf_male <- performance(perf_male, "tpr", "fpr")
 
-perf_female <- prediction(pred_female, test_female$male)
+perf_female <- prediction(pred_female, test_female$MALE_DEATH_1yr)
 perf_female <- performance(perf_female, "tpr", "fpr")
 
 plot(perf_male)
