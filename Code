@@ -54,7 +54,7 @@ NB <- train(x = predictors_train_preop, y = as.factor(train$MALE_DEATH_1yr), dat
 SVMgrid <- expand.grid(C = c(0.001, 0.01, 0.1, 1, 10, 100, 10000))
 SVM <- train(x = predictors_train_preop, y = train$MALE_DEATH_1yr, data = train, method = "svmRadial", metric = "ROC", trControl = train_control, tuneGrid = SVMgrid)
 
-#Train artaoficial neural network
+#Train artificial neural network
 NNETgrid <- expand.grid(size = seq(1,10,by=1), decay = seq(0.1,0.5,by=0.1))
 NNET <- train(x = predictors_train_preop, y = train$MALE_DEATH_1yr, data = train, method = "nnet", metric = "ROC", trControl = train_control, tuneGrid = NNETgrid)
 
